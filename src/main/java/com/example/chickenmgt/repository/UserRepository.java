@@ -11,7 +11,18 @@ import java.util.List;
 public interface UserRepository extends JpaRepository<User, Long> {
     boolean existsByEmail(String email);
 
-    @Query("SELECT DISTINCT u FROM Farm f JOIN f.owner u JOIN f.location l JOIN l.province p " +
-            "WHERE p.code = :provinceIdentifier OR p.name = :provinceIdentifier")
-    List<User> findByProvince(@Param("provinceIdentifier") String provinceIdentifier);
+    @Query("SELECT u FROM User u WHERE u.village.cell.sector.district.province.code = :identifier OR u.village.cell.sector.district.province.name = :identifier")
+    List<User> findByProvince(@Param("identifier") String identifier);
+
+    @Query("SELECT u FROM User u WHERE u.village.cell.sector.district.code = :identifier OR u.village.cell.sector.district.name = :identifier")
+    List<User> findByDistrict(@Param("identifier") String identifier);
+
+    @Query("SELECT u FROM User u WHERE u.village.cell.sector.code = :identifier OR u.village.cell.sector.name = :identifier")
+    List<User> findBySector(@Param("identifier") String identifier);
+
+    @Query("SELECT u FROM User u WHERE u.village.cell.code = :identifier OR u.village.cell.name = :identifier")
+    List<User> findByCell(@Param("identifier") String identifier);
+
+    @Query("SELECT u FROM User u WHERE u.village.code = :identifier OR u.village.name = :identifier")
+    List<User> findByVillage(@Param("identifier") String identifier);
 }

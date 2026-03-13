@@ -2,14 +2,17 @@ package com.example.chickenmgt.service;
 
 import com.example.chickenmgt.model.Province;
 import com.example.chickenmgt.repository.ProvinceRepository;
-import lombok.RequiredArgsConstructor;
+
 import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor
 public class ProvinceService {
     private final ProvinceRepository provinceRepository;
+
+    public ProvinceService(ProvinceRepository provinceRepository) {
+        this.provinceRepository = provinceRepository;
+    }
 
     public List<Province> findAll() {
         return provinceRepository.findAll();

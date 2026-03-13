@@ -2,16 +2,19 @@ package com.example.chickenmgt.controller;
 
 import com.example.chickenmgt.model.Farm;
 import com.example.chickenmgt.service.FarmService;
-import lombok.RequiredArgsConstructor;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/farms")
-@RequiredArgsConstructor
 public class FarmController {
     private final FarmService farmService;
+
+    public FarmController(FarmService farmService) {
+        this.farmService = farmService;
+    }
 
     @GetMapping
     public List<Farm> getAll() {

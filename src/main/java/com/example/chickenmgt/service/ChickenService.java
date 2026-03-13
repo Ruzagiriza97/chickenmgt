@@ -2,15 +2,18 @@ package com.example.chickenmgt.service;
 
 import com.example.chickenmgt.model.Chicken;
 import com.example.chickenmgt.repository.ChickenRepository;
-import lombok.RequiredArgsConstructor;
+
 import org.springframework.stereotype.Service;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 @Service
-@RequiredArgsConstructor
 public class ChickenService {
     private final ChickenRepository chickenRepository;
+
+    public ChickenService(ChickenRepository chickenRepository) {
+        this.chickenRepository = chickenRepository;
+    }
 
     public Page<Chicken> findAll(Pageable pageable) {
         return chickenRepository.findAll(pageable);

@@ -2,16 +2,19 @@ package com.example.chickenmgt.controller;
 
 import com.example.chickenmgt.model.Role;
 import com.example.chickenmgt.service.RoleService;
-import lombok.RequiredArgsConstructor;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/roles")
-@RequiredArgsConstructor
 public class RoleController {
     private final RoleService roleService;
+
+    public RoleController(RoleService roleService) {
+        this.roleService = roleService;
+    }
 
     @GetMapping
     public List<Role> getAll() {

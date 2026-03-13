@@ -2,14 +2,17 @@ package com.example.chickenmgt.service;
 
 import com.example.chickenmgt.model.Farm;
 import com.example.chickenmgt.repository.FarmRepository;
-import lombok.RequiredArgsConstructor;
+
 import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor
 public class FarmService {
     private final FarmRepository farmRepository;
+
+    public FarmService(FarmRepository farmRepository) {
+        this.farmRepository = farmRepository;
+    }
 
     public List<Farm> findAll() {
         return farmRepository.findAll();

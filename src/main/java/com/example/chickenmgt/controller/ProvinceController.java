@@ -2,16 +2,19 @@ package com.example.chickenmgt.controller;
 
 import com.example.chickenmgt.model.Province;
 import com.example.chickenmgt.service.ProvinceService;
-import lombok.RequiredArgsConstructor;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/provinces")
-@RequiredArgsConstructor
 public class ProvinceController {
     private final ProvinceService provinceService;
+
+    public ProvinceController(ProvinceService provinceService) {
+        this.provinceService = provinceService;
+    }
 
     @GetMapping
     public List<Province> getAll() {

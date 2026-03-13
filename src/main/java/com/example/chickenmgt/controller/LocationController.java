@@ -2,16 +2,19 @@ package com.example.chickenmgt.controller;
 
 import com.example.chickenmgt.model.Location;
 import com.example.chickenmgt.service.LocationService;
-import lombok.RequiredArgsConstructor;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/locations")
-@RequiredArgsConstructor
 public class LocationController {
     private final LocationService locationService;
+
+    public LocationController(LocationService locationService) {
+        this.locationService = locationService;
+    }
 
     @GetMapping
     public List<Location> getAll() {

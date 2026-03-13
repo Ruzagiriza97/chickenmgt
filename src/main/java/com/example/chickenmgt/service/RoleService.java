@@ -2,14 +2,17 @@ package com.example.chickenmgt.service;
 
 import com.example.chickenmgt.model.Role;
 import com.example.chickenmgt.repository.RoleRepository;
-import lombok.RequiredArgsConstructor;
+
 import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor
 public class RoleService {
     private final RoleRepository roleRepository;
+
+    public RoleService(RoleRepository roleRepository) {
+        this.roleRepository = roleRepository;
+    }
 
     public List<Role> findAll() {
         return roleRepository.findAll();

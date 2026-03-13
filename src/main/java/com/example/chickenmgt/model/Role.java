@@ -1,15 +1,10 @@
 package com.example.chickenmgt.model;
 
 import jakarta.persistence.*;
-import lombok.*;
+
 
 @Entity
 @Table(name = "roles")
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,4 +12,34 @@ public class Role {
 
     @Column(unique = true, nullable = false)
     private String name;
+
+    public Role() {}
+
+    public Role(Long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    public static RoleBuilder builder() {
+        return new RoleBuilder();
+    }
+
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
+
+    public static class RoleBuilder {
+        private Long id;
+        private String name;
+
+        RoleBuilder() {}
+
+        public RoleBuilder id(Long id) { this.id = id; return this; }
+        public RoleBuilder name(String name) { this.name = name; return this; }
+
+        public Role build() {
+            return new Role(id, name);
+        }
+    }
 }
