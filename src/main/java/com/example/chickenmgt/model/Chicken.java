@@ -22,6 +22,12 @@ public class Chicken {
     @Column(name = "hatch_date")
     private LocalDate hatchDate;
 
+    @Column(name = "age_weeks")
+    private Integer ageWeeks;
+
+    @Column(name = "weight_kg")
+    private Double weightKg;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "farm_id", nullable = false)
     private Farm farm;

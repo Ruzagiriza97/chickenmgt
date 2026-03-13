@@ -20,6 +20,9 @@ public class Province {
     @Column(unique = true, nullable = false)
     private String name;
 
+    @Column(unique = true, nullable = false)
+    private String code;
+
     @OneToMany(mappedBy = "province", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Location> locations = new ArrayList<>();
 }
